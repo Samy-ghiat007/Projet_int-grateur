@@ -3,18 +3,20 @@ import { expect } from 'chai';
 import app from '../app.js';
 import db from '../config/db.config.js';
 import User from '../models/user.model.js';
+import bcrypt from 'bcrypt';
 
 describe('User API', () => {
     let token;
 
     before(async () => {
         await db.sync({ force: true }); // Reset the database before tests
+        const hashedPassword = await bcrypt.hash('password123', 10);
         await User.create({
             name: 'Test',
             lastName: 'User',
             email: 'testuser@example.com',
             username: 'testuser',
-            password: '$2b$10$somethinghashed'
+            password: hashedPassword
         });
 
         // Login to get the token

@@ -1,4 +1,3 @@
-// product.model.js
 const { DataTypes } = require('sequelize');
 const db = require('../config/db.config');
 
@@ -21,7 +20,7 @@ const Product = db.define('Product', {
         allowNull: true
     },
     price: {
-        type: DataTypes.FLOAT(8, 2),
+        type: DataTypes.DECIMAL(10, 2),  // Changed from FLOAT to DECIMAL
         allowNull: true
     },
     category: {
