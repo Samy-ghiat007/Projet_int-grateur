@@ -1,10 +1,6 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
-import { createRouter, createWebHistory } from 'vue-router'
-import Catalog from "@/views/Catalog.vue";
-import ProductDetail from "@/views/ProductDetail.vue";
-import Cart from "@/views/Cart.vue";
-import Login from '../components/Login.vue';
+
 
 const routes = [
   {
