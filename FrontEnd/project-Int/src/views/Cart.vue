@@ -10,16 +10,22 @@
             <div class="cart-item" v-for="item in store.cart" :key="item.id">
                 <div class="item-details">
                     <img :src="item.image" alt="item.modele">
-                    <span>Marque: {{ item.marque }}</span>
-                    <span>Categorie: {{ item.categorie }}</span>
-                    <span>Prix: {{ formatPrice(item.prix) }}$</span>
+                    <span>Marque: {{ item.make }}</span>
+                    <span>Categorie: {{ item.category }}</span>
+                    <span>Prix: {{ item.price }}$</span>
                     <button @click="removeFromCart(item.id)">Supprimer</button>
                 </div>
             </div>
             <div class="total">
-                Montant total: {{ formatPrice(calculateTotal()) }}$
+                Montant total: {{ calculateTotal() }}$
             </div>
-
+            <div>
+                <PasserCommandeButton />
+            </div>
+            <div>
+                <!-- Passer le montant total à PayPal.vue -->
+                <PayPal :cartTotal="calculateTotal()" />
+            </div>
         </div>
     </div>
 </template>
@@ -27,6 +33,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import { productsStore } from "@/store/product";
+import PasserCommandeButton from '@/components/PasserCommandeButton.vue';
 
 
 
@@ -38,13 +45,13 @@ const removeFromCart = (id) => {
 };
 
 const calculateTotal = () => {
-    return store.cart.reduce((total, item) => total + item.prix, 0);
+    return store.cart.reduce((total, item) => total + item.price, 0);
 };
 
 // Fonction pour formater le prix avec deux chiffres après la virgule
-const formatPrice = (price) => {
+/* const formatPrice = (price) => {
     return price.toFixed(2);
-};
+}; */
 </script>
 
 <style scoped>
