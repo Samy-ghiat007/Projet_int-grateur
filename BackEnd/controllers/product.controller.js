@@ -71,3 +71,13 @@ exports.delete = async (req, res) => {
     }
 };
 
+// Delete all products
+exports.deleteAll = async (req, res) => {
+    try {
+        await Product.destroy({ where: {} });
+        res.status(200).json({ message: 'All products deleted successfully' });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting products', error: error.message });
+    }
+};
+
