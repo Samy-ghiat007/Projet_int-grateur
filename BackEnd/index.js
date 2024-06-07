@@ -3,10 +3,8 @@ const app = require('./app');
 require('dotenv').config();
 
 
-var cors = require('cors')
 
- 
-app.use(cors())
+
 
 
 // Démarrer le serveur

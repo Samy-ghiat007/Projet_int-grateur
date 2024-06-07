@@ -19,7 +19,7 @@
             <div class="total">
                 Montant total: {{ formatPrice(calculateTotal()) }}$
             </div>
-            
+
         </div>
     </div>
 </template>
