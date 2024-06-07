@@ -2,6 +2,13 @@
 const app = require('./app');
 require('dotenv').config();
 
+
+var cors = require('cors')
+
+ 
+app.use(cors())
+
+
 // Démarrer le serveur
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
