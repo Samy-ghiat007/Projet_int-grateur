@@ -15,24 +15,27 @@ async function signIn(){
  // Formulaire de login
 <template>
     <div>
-            <form>
-                <div class="container">
-                    <label for="uname"><b>Nom d'utilisateur</b></label>
-                    <input type="text" name="uname" required v-model="user.username">
-                    <br>
-                    <label for="psw"><b>Mot de passe</b></label>
-                    <input type="password" name="psw" required v-model="user.password">
- 
-                   
-                    <v-btn @click="signIn" color="primary">
-                        Se connecter
-                        </v-btn>
-                   
-                    <label>
+        <form>
+            <div class="container">
+                <label for="uname"><b>Nom d'utilisateur</b></label>
+                <input type="text" name="uname" required v-model="user.username">
+                <br>
+                <label for="psw"><b>Mot de passe</b></label>
+                <input type="password" name="psw" required v-model="user.password">
+
+
+                <v-btn @click="signIn" color="primary">
+                    Se connecter
+                </v-btn>
+
+                <label>
                     <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
-                    </label>
-                </div>
-            </form>
+                </label>
+            </div>
+        </form>
+        <div class="container">
+            <router-link to="/inscription">Pas encore inscrit ? Créez un compte</router-link>
+        </div>
     </div>
 </template>
  
