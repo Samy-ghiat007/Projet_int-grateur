@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 export const productsStore = defineStore('products', {
   state: () => ({
     products: [],
-      cart: []
+      cart: JSON.parse(localStorage.getItem('cart')) || []
   }),
 
   actions: {
@@ -22,15 +22,26 @@ export const productsStore = defineStore('products', {
           }
         },
         addToCart(product) {
-          this.cart.push(product)
+          this.cart.push(product);
+          this.saveCart();
         },
         removeFromCart(id) {
           console.log('>>>>> ID', id)
-          this.cart = this.cart.filter((item) => item.id !== id)
+          this.cart = this.cart.filter((item) => item.id !== id);
+          this.saveCart();
 
         },
+        saveCart() {
+          localStorage.setItem('cart', JSON.stringify(this.cart));
+        },
+        loadCart() {
+          const storedCart = localStorage.getItem('cart');
+          if (storedCart) {
+            this.cart = JSON.parse(storedCart);
+          }
+
 
 
     }
   }
-)
+});
