@@ -45,8 +45,10 @@ const removeFromCart = (id) => {
 };
 
 const calculateTotal = () => {
-    return store.cart.reduce((total, item) => total + item.price, 0);
+  let total = store.cart.reduce((acc, item) => acc + Number(item.price), 0);
+  return parseFloat(total.toFixed(2));
 };
+
 
 // Fonction pour formater le prix avec deux chiffres après la virgule
 /* const formatPrice = (price) => {
