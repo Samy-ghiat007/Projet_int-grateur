@@ -17,8 +17,9 @@ exports.register = async (req, res) => {
 };
 
 exports.login = async (req, res) => {
-    // Connexion de l'utilisateur
+    console.log(req.body)
     const { username, password } = req.body;
+    console.log(username, password)
     const user = await User.findOne({ where: { username } });
     if (!user) {
         return res.status(404).send({ message: 'Utilisateur non trouvé!' });
