@@ -31,6 +31,7 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue';
 import { useRouter } from "vue-router";
 import { productsStore } from "@/store/product";
 import PasserCommandeButton from '@/components/PasserCommandeButton.vue';
@@ -49,11 +50,11 @@ const calculateTotal = () => {
   return parseFloat(total.toFixed(2));
 };
 
+onMounted(() => {
+  store.loadCart();
+});
 
-// Fonction pour formater le prix avec deux chiffres après la virgule
-/* const formatPrice = (price) => {
-    return price.toFixed(2);
-}; */
+
 </script>
 
 <style scoped>
