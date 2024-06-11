@@ -1,17 +1,19 @@
 <script setup>
- 
+
 import { reactive } from 'vue';
-import {useAuthentificationStore} from '../store/authentificationStore';
- 
+import {useAuthentificationStore} from '@/store/authentificationStore';
+import router from "@/router";
+
 const authentificationStore = useAuthentificationStore();
 const user = reactive({username: '', password: ''})
- 
+
 async function signIn(){
-    await authentificationStore.login(user);
+    await authentificationStore.login(user)
+    await router.push('/');
 }
- 
+
 </script>
- 
+
  // Formulaire de login
 <template>
     <div>
@@ -38,7 +40,7 @@ async function signIn(){
         </div>
     </div>
 </template>
- 
+
 //Style de la page
 <style>
     .container {
@@ -52,13 +54,13 @@ async function signIn(){
             border-radius: 8px;
             background-color: #ffffff;
 }
- 
+
 label {
             margin-bottom: 8px;
             font-weight: bold;
             color: #333;
 }
- 
+
         input[type="text"],
         input[type="password"] {
         font-size: 16px;
@@ -68,27 +70,27 @@ label {
         border-radius: 5px;
         outline: none;
 }
- 
+
         input[type="text"]:focus,
         input[type="password"]:focus {
         border-color: #007bff;
 }
- 
+
 .v-btn {
         cursor: pointer;
         text-align: center;
         margin: 10px 0;
 }
- 
+
 label > input[type="checkbox"] {
   margin-right: 10px;
 }
- 
- 
+
+
         label {
         display: flex;
         align-items: center;
         justify-content: flex-start;
         }
- 
+
 </style>
