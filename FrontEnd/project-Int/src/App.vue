@@ -9,8 +9,13 @@
         </v-btn>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
-        <v-btn class="mx-auto" @click="router.push({ name: 'LoginView' })" color="primary" variant="elevated">
-          Se connecter
+        <v-btn
+          class="mx-auto"
+          @click="isAuthenticated ? handleLogout() : router.push({ name: 'LoginView' })"
+          color="primary"
+          variant="elevated"
+        >
+          {{ isAuthenticated ? 'Se déconnecter' : 'Se connecter' }}
         </v-btn>
         <v-spacer></v-spacer>
         <v-spacer></v-spacer>
@@ -27,11 +32,21 @@
 </template>
 
 <script setup>
-import { useRouter } from "vue-router";
-import { productsStore } from "@/store/product";
+import { useRouter } from 'vue-router';
+import { productsStore } from '@/store/product';
+import { useAuthentificationStore } from '@/store/authentificationStore';
+import { computed } from 'vue';
 
-const router = useRouter()
-const store = productsStore()
+const router = useRouter();
+const store = productsStore();
+const authStore = useAuthentificationStore();
+
+const isAuthenticated = computed(() => authStore.getIsAuthenticated);
+
+const handleLogout = () => {
+  authStore.logout();
+  router.push({ name: 'LoginView' });
+};
 </script>
 
 <style scoped>
