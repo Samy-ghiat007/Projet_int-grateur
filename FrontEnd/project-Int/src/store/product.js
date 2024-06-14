@@ -21,8 +21,9 @@ export const productsStore = defineStore('products', {
             console.error("Erreur lors de la récupération des produits:", error);
           }
         },
-        addToCart(product) {
-          this.cart.push(product);
+        addToCart(product, quantity = 1) {
+          const cartProduct = { ...product, quantity };
+          this.cart.push(cartProduct);
           this.saveCart();
         },
         removeFromCart(id) {

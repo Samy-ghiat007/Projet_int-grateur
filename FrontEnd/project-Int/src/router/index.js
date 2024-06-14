@@ -5,6 +5,7 @@ import ProductDetail from "@/views/ProductDetail.vue";
 import Cart from "@/views/Cart.vue";
 import Login from '../components/Login.vue';
 import Inscription from '../components/Inscription.vue';
+import PayPal from '../views/PayPal.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,11 +32,15 @@ const router = createRouter({
     },
     {
       path: '/inscription',
-      name: 'inscription',
+      name: 'InscriptionView',
       component: Inscription
+    },
+    {
+      path: '/paypal',
+      name: 'PayPal',
+      component: PayPal
     }
   ]
 })
- 
+
 export default router
- 
