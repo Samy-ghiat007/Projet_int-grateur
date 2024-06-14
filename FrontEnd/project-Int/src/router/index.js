@@ -37,7 +37,7 @@ const router = createRouter({
     },
     {
       path: '/paypal',
-      name: 'PayPalView',
+      name: 'PayPal',
       component: PayPal
     }
   ]
