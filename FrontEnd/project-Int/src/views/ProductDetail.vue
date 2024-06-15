@@ -47,7 +47,7 @@ const selectedProduct = computed(() => {
 });
 
 const addToCart = () => {
-  store.addToCart(selectedProduct.value, 1); // Specify quantity as 1
+  store.addToCart(selectedProduct.value);
   router.push({ name: 'CartView' });
 };
 </script>

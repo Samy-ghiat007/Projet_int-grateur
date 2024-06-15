@@ -26,9 +26,11 @@
             Panier: {{ store.cart.length }}
           </v-btn>
 
-          <v-btn class="nav-btn" @click="router.push({ name: 'OrdersView' })" color="primary" variant="elevated">
-            Orders
-          </v-btn>
+          <template v-if="isAuthenticated">
+            <v-btn class="nav-btn" @click="router.push({ name: 'Orders' })" color="primary" variant="elevated">
+              Orders
+            </v-btn>
+          </template>
         </div>
       </v-toolbar>
     </header>
@@ -73,7 +75,7 @@ const handleLogout = () => {
   display: flex;
   justify-content: center;
   flex-grow: 1;
-  margin-left: 260px
+  margin-left: 160px
 }
 
 .right-section {

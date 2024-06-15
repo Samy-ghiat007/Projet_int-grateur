@@ -31,7 +31,6 @@ db.sync().then(async () => {
     const products = await require('./models/product.model').findAll();
     if (products.length === 0) {
         await require('./models/product.model').bulkCreate([
-            
     { make: 'HP', model: 'Steam', details: 'Notebook portable', price: 275.99, category: 'Laptop', image: 'https://iili.io/JpwEJ2V.jpg', quantity: 40 },
     { make: 'Lenovo', model: 'IdeaPad 1', details: 'Responsive performance in a slim chassis', price: 178.99, category: 'Laptop', image: 'https://iili.io/JpwE2kP.webp', quantity: 40 },
     { make: 'ASUS', model: 'Chromebook CX1400', details: 'Lightweight and ultraportable', price: 200.99, category: 'Laptop', image: 'https://iili.io/JpwEqQa.webp', quantity: 40 },
