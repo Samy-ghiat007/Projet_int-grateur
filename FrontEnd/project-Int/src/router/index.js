@@ -6,6 +6,7 @@ import Cart from "@/views/Cart.vue";
 import Login from '../components/Login.vue';
 import Inscription from '../components/Inscription.vue';
 import PayPal from '../views/PayPal.vue';
+import Orders from '../components/Orders.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/paypal',
       name: 'PayPal',
       component: PayPal
+    },
+    {
+      path:'/orders',
+      name: 'Orders',
+      component: Orders
     }
   ]
 })

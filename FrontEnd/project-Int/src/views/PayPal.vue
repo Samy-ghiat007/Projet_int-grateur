@@ -1,8 +1,7 @@
 <script setup>
 import { loadScript } from '@paypal/paypal-js';
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { useRouter } from 'vue-router'; // Import useRouter to redirect
 
 // PayPal Client ID
 const CLIENT_ID = 'AUND7T_D3FLYecFaEF5jpaxk5EDZFzjoa6Jd5rS-C1GAhJ2FHl4aWjZjTZ9-XQ0H4JRoOQYaCVkxOaWk';
@@ -11,8 +10,7 @@ const CLIENT_ID = 'AUND7T_D3FLYecFaEF5jpaxk5EDZFzjoa6Jd5rS-C1GAhJ2FHl4aWjZjTZ9-X
 const paid = ref(false);
 const orderId = ref(null);
 const cartItems = ref([]);
-const cartItemsLength = computed(() => cartItems.value.length);
-const router = useRouter(); // Initialize the router
+
 
 // Constants for tax rates
 const TPS_RATE = 0.05;
@@ -116,7 +114,7 @@ const handleTransactionComplete = () => {
   cartItems.value = []; // Clear the cart items in the state
 
   // Use traditional window.location to force a full page reload
-  window.location.href = '/';
+  window.location.href = '/orders';
 };
 
 // Function to render PayPal button
@@ -173,7 +171,7 @@ onMounted(async () => {
 
 <template>
   <div>
-    
+
     <div v-if="cartItems.length">
       <h2>Your Cart</h2>
       <ul>
