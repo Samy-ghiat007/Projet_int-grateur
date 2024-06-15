@@ -4,13 +4,12 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 // PayPal Client ID
-const CLIENT_ID = 'AUND7T_D3FLYecFaEF5jpaxk5EDZFzjoa6Jd5rS-C1GAhJ2FHl4aWjZjTZ9-XQ0H4JRoOQYaCVkxOaWk';
+const CLIENT_ID = 'AY2JGjh5ofN9VsQPUd2if-BIbfgVbXnZlCBepqB4CFcY7KyGpdLyOLZIrYY3nGUKUhMhfMrlkFr4m-T7';
 
 // State
 const paid = ref(false);
 const orderId = ref(null);
 const cartItems = ref([]);
-
 
 // Constants for tax rates
 const TPS_RATE = 0.05;
@@ -65,12 +64,13 @@ const calculateTotals = () => {
 };
 
 // Create order on the backend
-const createOrderOnBackend = async () => {
+const createOrderOnBackend = async (paypalOrderId) => {
+  console.log('Creating order on backend with PayPal order ID:', paypalOrderId);
   try {
-    console.log('Creating order on backend');
-    const token = localStorage.getItem('user');
+    const token = localStorage.getItem('user').replace(/"/g, '');
     const response = await axios.post('http://localhost:5000/api/orders/create', {
-      cartItems: cartItems.value
+      cartItems: cartItems.value,
+      paypalOrderId // Ensure this is correctly passed and used in the backend
     }, {
       headers: {
         'x-access-token': token
@@ -122,19 +122,26 @@ const renderPayPalButton = (paypal) => {
   try {
     paypal.Buttons({
       createOrder: async (data, actions) => {
-        await createOrderOnBackend();
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              currency_code: 'USD',
-              value: formatPrice(totalWithTaxes.value) // Use total calculated in frontend
-            }
-          }],
-          application_context: {
-            brand_name: 'Your Brand',
-            user_action: 'PAY_NOW',
-          },
-        });
+        try {
+          const order = await actions.order.create({
+            purchase_units: [{
+              amount: {
+                currency_code: 'USD',
+                value: formatPrice(totalWithTaxes.value)
+              }
+            }],
+            application_context: {
+              brand_name: 'Progmatique',
+              user_action: 'PAY_NOW',
+            },
+          });
+          console.log('Created PayPal order:', order);
+          const backendOrder = await createOrderOnBackend(order); // Call createOrderOnBackend here
+          return order; // Return the PayPal order ID to PayPal
+        } catch (error) {
+          console.error('Error creating PayPal order:', error);
+          throw error; // Rethrow or handle as needed
+        }
       },
       onApprove: async (data, actions) => {
         await actions.order.capture();
@@ -155,7 +162,7 @@ onMounted(async () => {
   loadCartItems();
   calculateTotals();
   try {
-    const paypal = await loadScript({ 'client-id': CLIENT_ID });
+    const paypal = await loadScript({'client-id': CLIENT_ID});
     const paypalContainer = document.querySelector('#paypal-button-container');
     if (paypalContainer) {
       renderPayPalButton(paypal);
@@ -168,10 +175,8 @@ onMounted(async () => {
 });
 </script>
 
-
 <template>
   <div>
-
     <div v-if="cartItems.length">
       <h2>Your Cart</h2>
       <ul>
@@ -183,7 +188,7 @@ onMounted(async () => {
             <p><strong>Quantity:</strong> {{ item.quantity }}</p>
             <p><strong>Total:</strong> ${{ formatPrice(item.price * item.quantity) }}</p>
           </div>
-          <img :src="item.image" alt="Item Image" class="item-image-small" />
+          <img :src="item.image" alt="Item Image" class="item-image-small"/>
         </li>
       </ul>
       <div class="totals">
@@ -201,7 +206,6 @@ onMounted(async () => {
 </template>
 
 <style>
-
 #paypal-button-container {
   display: flex !important;
   justify-content: center !important;

@@ -1,45 +1,51 @@
 <script setup>
-
-import { reactive } from 'vue';
+import {reactive, ref} from 'vue';
 import {useAuthentificationStore} from '@/store/authentificationStore';
 import router from "@/router";
 
 const authentificationStore = useAuthentificationStore();
-const user = reactive({username: '', password: ''})
+const user = reactive({username: '', password: ''});
+const errorMessage = ref('');
 
-async function signIn(){
-    await authentificationStore.login(user)
-    await router.push('/');
+async function signIn() {
+  try {
+    const success = await authentificationStore.login(user);
+    if (success) {
+      await router.push('/');
+    } else {
+      errorMessage.value = "Login failed: Incorrect username or password.";
+    }
+  } catch (error) {
+    errorMessage.value = "An error occurred. Please try again.";
+  }
 }
-
 </script>
 
- // Formulaire de login
+
 <template>
-    <div>
-        <form>
-            <div class="container">
-                <label for="uname"><b>Nom d'utilisateur</b></label>
-                <input type="text" name="uname" required v-model="user.username">
-                <br>
-                <label for="psw"><b>Mot de passe</b></label>
-                <input type="password" name="psw" required v-model="user.password">
-
-
-                <v-btn @click="signIn" color="primary">
-                    Se connecter
-                </v-btn>
-
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
-                </label>
-            </div>
-        </form>
-        <div class="container">
-            <router-link to="/inscription">Pas encore inscrit ? Créez un compte</router-link>
-        </div>
+  <div>
+    <form @submit.prevent="signIn">
+      <div class="container">
+        <v-alert v-if="errorMessage" type="error" dismissible>{{ errorMessage }}</v-alert>
+        <label for="uname"><b>Nom d'utilisateur</b></label>
+        <input type="text" name="uname" required v-model="user.username">
+        <br>
+        <label for="psw"><b>Mot de passe</b></label>
+        <input type="password" name="psw" required v-model="user.password">
+        <v-btn type="submit" color="primary">
+          Se connecter
+        </v-btn>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Se souvenir de moi
+        </label>
+      </div>
+    </form>
+    <div class="container">
+      <router-link to="/inscription">Pas encore inscrit ? Créez un compte</router-link>
     </div>
+  </div>
 </template>
+
 
 //Style de la page
 <style>

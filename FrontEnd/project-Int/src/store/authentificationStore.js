@@ -1,4 +1,3 @@
-// authentification du magasin
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
@@ -37,30 +36,27 @@ export const useAuthentificationStore = defineStore('authentificationStore', {
     },
 
     async login(user) {
-      console.log(user);
       try {
         const response = await axios.post(loginUrl, {
           username: user.username,
           password: user.password,
         });
-        console.log(response);
 
         if (response.data.accessToken) {
           this.setIsAuthenticated(true);
           this.setUser(response.data);
-          const accessToken = response.data.accessToken;
-          console.log(accessToken);
-          localStorage.setItem('user', JSON.stringify(accessToken));
-          console.log('user is connected');
+          localStorage.setItem('user', JSON.stringify(response.data.accessToken));
+          return true;
+        } else {
+          return false;
         }
       } catch (error) {
         console.log(error);
-        alert("Une erreur s'est produite. Veuillez réessayer...");
+        return false;
       }
     },
 
     async register(user) {
-      console.log(user);
       try {
         const response = await axios.post(registerUrl, {
           name: user.name,
