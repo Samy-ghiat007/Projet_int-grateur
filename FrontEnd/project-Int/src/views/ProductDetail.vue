@@ -11,6 +11,7 @@
 
     <div class="product">
       <div class="product-details">
+        <img :src="selectedProduct.image" alt="Image du produit" width="200" height="200" class="product-image">
         <p>Marque: {{ selectedProduct.make }}</p>
         <p>Details: {{ selectedProduct.details }}</p>
         <h2>Prix: {{ selectedProduct.price }}$</h2>

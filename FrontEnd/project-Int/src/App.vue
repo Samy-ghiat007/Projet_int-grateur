@@ -30,6 +30,10 @@
             <v-btn class="nav-btn" @click="router.push({ name: 'Orders' })" color="primary" variant="elevated">
               Orders
             </v-btn>
+
+            <v-btn class="nav-btn" @click="router.push({ name: 'ProfileView' })" color="primary" variant="elevated">
+              Profil
+            </v-btn>
           </template>
         </div>
       </v-toolbar>
