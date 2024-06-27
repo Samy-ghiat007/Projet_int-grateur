@@ -176,7 +176,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="container">
+  <div class="containerp">
     <div v-if="cartItems.length">
       <h2>Votre panier</h2>
       <ul>
