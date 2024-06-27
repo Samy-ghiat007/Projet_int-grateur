@@ -9,23 +9,26 @@
       Retour au catalogue
     </v-btn>
 
-    <div class="product">
-      <div class="product-details">
-        <img :src="selectedProduct.image" alt="Image du produit" width="200" height="200" class="product-image">
-        <p>Marque: {{ selectedProduct.make }}</p>
-        <p>Details: {{ selectedProduct.details }}</p>
-        <h2>Prix: {{ selectedProduct.price }}$</h2>
-        <v-btn
-          variant="elevated"
-          color="indigo-lighten-3"
-          @click="addToCart"
-        >
-          Ajouter au panier
-        </v-btn>
+    <div class="product-container">
+      <div class="product">
+        <div class="product-details">
+          <img :src="selectedProduct.image" alt="Image du produit" width="300" height="300" class="product-image">
+          <p>Marque: {{ selectedProduct.make }}</p>
+          <p>Details: {{ selectedProduct.details }}</p>
+          <h2>Prix: {{ selectedProduct.price }}$</h2>
+          <v-btn
+            variant="elevated"
+            color="indigo-lighten-3"
+            @click="addToCart"
+          >
+            Ajouter au panier
+          </v-btn>
+        </div>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 import { defineComponent } from "vue";
@@ -54,13 +57,26 @@ const addToCart = () => {
 </script>
 
 <style scoped>
+.product-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Pour centrer verticalement sur toute la hauteur de la vue */
+}
+
 .product {
   display: flex;
-  margin-top: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-details {
+  text-align: center;
 }
 
 .product-image {
-  margin-right: 24px;
+  margin-bottom: 24px;
 }
 </style>
+
 
