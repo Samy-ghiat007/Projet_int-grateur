@@ -14,23 +14,24 @@
 # Description du Frontend
  Ce projet est implémenté en Vue.js (version 3). L'application web dispose de la gestion d'état avec plusieurs modules dans le répertoire store. Pour le frontend, il y a un processus d'authentification avec une fonctionnalité de réinitialisation du mot de passe qui inclut l'automatisation des emails. En utilisant la méthode de paiement de Paypal, l'application web peut traiter différents types de cartes et de devises supportées par Paypal. À partir des pages de routage, vous trouverez un code détaillé sur comment restreindre quelqu'un d'accéder à une route et afficher une page par défaut pour une demande non authentifiée ou une URL incorrecte entrée.
 
-# Description du Backend    ///////(Modifier) ////////
- Les API RESTful et la gestion de l'authentification sont les deux parties importantes du backend. Le middleware de session et l'authentification JWT ont aidé à obtenir les données de la base de données en toute sécurité. La plupart de l'automatisation des emails est réalisée dans le backend. La session de paiement est générée, et Sequelize ORM peut être utilisé pour travailler avec différents types de bases de données. Ce projet a travaillé avec la base de données MySQL ici. Les fichiers médias sont enregistrés et des URLs publiques sont générées. J'espère que vous trouverez ce projet utile. Si vous avez encore des questions, créez un problème ou posez-moi vos questions.
+# Description du Backend 
+ Les API RESTful et la gestion de l'authentification sont les deux parties importantes du backend. Le middleware de session et l'authentification JWT ont aidé à obtenir les données de la base de données en toute sécurité. La session de paiement est générée, et Sequelize ORM peut être utilisé pour travailler avec différents types de bases de données. Ce projet a travaillé avec la base de données MySQL ici. Les fichiers médias sont enregistrés et des URLs publiques sont générées. J'espère que vous trouverez ce projet utile. Si vous avez encore des questions, créez un problème ou posez-moi vos questions.
 
 ## Sujets inclus dans le projet
 # Frontend
 Vue.js
-Gestion d'état - Vuex///////////  (Modifier) ////////
+Vuetify 
 Routage Vue
-Conception de composants - Bootstrap Vue
-Passerelle de paiement - Paypal   (Vérifier) ////////
+CSS 
+Javascript
+HTML
+Pinia
 # Backend
 Node.js
 Express.js
 API RESTful
-Authentification - Passport.js///////    (Modifier) ////////
-Automatisation des mails - Nodemailer//////   (Modifier) ////////
-Interface de base de données - Sequelize////////  (Modifier) ////////
+JWT Token + Bcrypt
+Interface de base de données - Sequelize
 Base de Données - MySQL
 
 ## Configuration du Projet
