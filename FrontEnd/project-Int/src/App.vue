@@ -28,7 +28,11 @@
 
           <template v-if="isAuthenticated">
             <v-btn class="nav-btn" @click="router.push({ name: 'Orders' })" color="primary" variant="elevated">
-              Orders
+              Commandes
+            </v-btn>
+
+            <v-btn class="nav-btn" @click="router.push({ name: 'ProfileView' })" color="primary" variant="elevated">
+              Profil
             </v-btn>
           </template>
         </div>

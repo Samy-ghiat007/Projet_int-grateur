@@ -25,7 +25,7 @@ async function signIn() {
 <template>
   <div>
     <form @submit.prevent="signIn">
-      <div class="container">
+      <div class="containerP">
         <v-alert v-if="errorMessage" type="error" dismissible>{{ errorMessage }}</v-alert>
         <label for="uname"><b>Nom d'utilisateur</b></label>
         <input type="text" name="uname" required v-model="user.username">
@@ -40,7 +40,7 @@ async function signIn() {
         </label>
       </div>
     </form>
-    <div class="container">
+    <div class="containerP">
       <router-link to="/inscription">Pas encore inscrit ? Créez un compte</router-link>
     </div>
   </div>
@@ -49,7 +49,7 @@ async function signIn() {
 
 //Style de la page
 <style>
-    .container {
+    .containerP {
             display: flex;
             flex-direction: column;
             width: 100%;

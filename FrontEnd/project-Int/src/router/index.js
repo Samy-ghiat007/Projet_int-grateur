@@ -7,6 +7,7 @@ import Login from '../components/Login.vue';
 import Inscription from '../components/Inscription.vue';
 import PayPal from '../views/PayPal.vue';
 import Orders from '../components/Orders.vue'
+import Profile from '@/views/Profile.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,11 @@ const router = createRouter({
       path:'/orders',
       name: 'Orders',
       component: Orders
+    },
+    {
+      path: '/profile',
+      name: 'ProfileView',
+      component: Profile
     }
   ]
 })

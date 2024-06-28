@@ -176,16 +176,16 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
+  <div class="containerp">
     <div v-if="cartItems.length">
-      <h2>Your Cart</h2>
+      <h2>Votre panier</h2>
       <ul>
         <li v-for="item in cartItems" :key="item.id" class="cart-item">
           <div class="item-details">
             <h3>{{ item.name }}</h3>
-            <p><strong>Category:</strong> {{ item.category }}</p>
-            <p><strong>Price:</strong> ${{ formatPrice(item.price) }}</p>
-            <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+            <p><strong>Categorie:</strong> {{ item.category }}</p>
+            <p><strong>Prix:</strong> ${{ formatPrice(item.price) }}</p>
+            <p><strong>Quantité:</strong> {{ item.quantity }}</p>
             <p><strong>Total:</strong> ${{ formatPrice(item.price * item.quantity) }}</p>
           </div>
           <img :src="item.image" alt="Item Image" class="item-image-small"/>
@@ -201,11 +201,21 @@ onMounted(async () => {
     <div v-else>
       <p>Your cart is empty.</p>
     </div>
+    <div id="paypal-button-container"></div>
   </div>
-  <div id="paypal-button-container"></div>
 </template>
 
+
 <style>
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
 #paypal-button-container {
   display: flex !important;
   justify-content: center !important;
@@ -236,11 +246,13 @@ ul {
   border-radius: 5px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .item-details {
   flex: 1;
-  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .item-details p {
@@ -263,3 +275,4 @@ strong {
   font-weight: bold;
 }
 </style>
+

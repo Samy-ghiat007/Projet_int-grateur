@@ -1,7 +1,7 @@
 <template>
     <div>
       <form @submit.prevent="signUp">
-        <div class="container">
+        <div class="containerI">
 
           <label for="new-uname"><b>Nom</b></label>
           <input type="text" name="new-uname" required v-model="newUser.lastName">
@@ -24,7 +24,7 @@
           <v-btn type="submit" color="primary">S'inscrire</v-btn>
         </div>
       </form>
-      <div class="container">
+      <div class="containerI">
         <router-link to="/login">Déjà inscrit ? Connectez-vous</router-link>
       </div>
     </div>
@@ -49,7 +49,7 @@
   </script>
 
   <style>
-  .container {
+  .containerI {
     display: flex;
     flex-direction: column;
     width: 100%;
